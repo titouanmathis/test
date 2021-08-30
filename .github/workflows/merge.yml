@@ -19,7 +19,7 @@ jobs:
           package-path: ./package.json
 
       - name: Merge master → develop
-        uses: devmasx/merge-branch@v1.4.0
+        uses: devmasx/merge-branch@1.4.0
         with:
           type: now
           from_branch: development
