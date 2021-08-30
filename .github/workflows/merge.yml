@@ -1,0 +1,27 @@
+name: Git Flow Finish Release/Hotfix
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  finish-release-or-hotfix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Create Tag
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package-path: ./package.json
+
+      - name: Merge master → develop
+        uses: devmasx/merge-branch@v1.4.0
+        with:
+          type: now
+          from_branch: development
+          target_branch: devleop
+          github_token: ${{ secrets.GITHUB_TOKEN }}
