@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Create Tag
+        id: create_tag
         uses: Klemensas/action-autotag@stable
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -21,6 +22,6 @@ jobs:
         uses: devmasx/merge-branch@1.4.0
         with:
           type: now
-          from_branch: main
+          from_branch: ${{ steps.create_tag.output.version }}
           target_branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
