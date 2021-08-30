@@ -12,16 +12,15 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Create Tag
-        id: create_tag
-        uses: jaywcjlove/create-tag-action@main
+        uses: Klemensas/action-autotag@stable
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          package-path: ./package.json
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefix: ""
 
-      - name: Merge master → develop
-        uses: devmasx/merge-branch@v1.4.0
+      - name: Merge main → develop
+        uses: devmasx/merge-branch@1.4.0
         with:
           type: now
-          from_branch: development
-          target_branch: devleop
+          from_branch: main
+          target_branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
